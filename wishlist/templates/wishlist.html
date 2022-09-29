@@ -2,12 +2,42 @@
 
 {% block content %}
 
+<style>
+    td, th {
+      text-align: center;
+      padding: 8px;
+    }
+
+    h5 {
+        color: #000000;
+        text-align: center;
+    }
+
+    h4 {
+        color: #FFFFFF;
+    }
+
+    a[href] {
+        color: #000000;
+    }
+
+    .container-fluid {
+        margin-top: 20px;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .navbar-brand {
+        color: #FFFFFF;
+    }
+
+    </style>
+
 <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-    
-      <a class="navbar-brand" href="#">{{nama}}</a>
+    <!-- <div class="container-fluid"> -->
+      <h4>{{nama}}</h4>
       <button class="btn btn-light"><a href="{% url 'wishlist:logout' %}">Logout</a></button>
-    </div>
+    <!-- </div> -->
   </nav>
 
 <br>
@@ -30,6 +60,7 @@
 </table>
 </div>
 
+<br>
 <br>
 <h5>Sesi terakhir login: {{ last_login }}</h5>
 
