@@ -74,9 +74,14 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-
-
-
+def show_wishlist_ajax(request):
+    # data_barang_wishlist = BarangWishlist.objects.all()
+    context = {
+    # 'list_barang': data_barang_wishlist,
+    'nama': 'Adish',
+    'last_login': request.COOKIES['last_login'],
+    }
+    return render(request, "wishlist_ajax.html", context)
 
 # TODO: Bikin fugsi yang nerima parameter request
 

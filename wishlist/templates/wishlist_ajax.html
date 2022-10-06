@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- INCLUDING JQUERY-->
+
+<style>
+    td, th {
+      text-align: center;
+      padding: 8px;
+    }
+
+    h5 {
+        color: #000000;
+        text-align: center;
+    }
+
+    h4 {
+        color: #FFFFFF;
+    }
+
+    a[href] {
+        color: #000000;
+    }
+
+    .container-fluid {
+        margin-top: 20px;
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .navbar-brand {
+        color: #FFFFFF;
+    }
+
+    </style>
+
+<nav class="navbar navbar-dark bg-dark">
+    <!-- <div class="container-fluid"> -->
+      <h4>{{nama}}</h4>
+      <button class="btn btn-light"><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+    <!-- </div> -->
+  </nav>
+
+<br>
+
+<div class="container-fluid">
+<table class="table">
+    <tr>
+    <th>Nama Barang</th>
+    <th>Harga Barang</th>
+    <th>Deskripsi</th>
+    </tr>
+    <script>
+        $(document).ready(function () {
+    
+            // FETCHING DATA FROM JSON FILE
+            $.getJSON( "{% url 'wishlist:show_json' %}", function (data) {
+                var barang = '';
+    
+                // ITERATING THROUGH OBJECTS
+                $.each(data, function (key, value) {
+    
+                    //CONSTRUCTION OF ROWS HAVING
+                    // DATA FROM JSON OBJECT
+                    barang += '<tr>';
+
+                    barang += '<td>' + value.fields.nama_barang + '</td>';
+    
+                    barang += '<td>' + value.fields.harga_barang + '</td>';
+    
+                    barang += '<td>' + value.fields.deskripsi + '</td>';
+    
+                    barang += '</tr>';
+                });
+                  
+                //INSERTING ROWS INTO TABLE 
+                $('#table').append(barang);
+            });
+        });
+    </script>
+</table>
+</div>
+
+<br>
+<br>
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
+{% endblock content %}
